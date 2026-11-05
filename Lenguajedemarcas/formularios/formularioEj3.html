@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<style>
+    body{
+        font-size: 110%;
+        font-family: 'StarWars', sans-serif;
+    }
+    fieldset{
+        border-color: dodgerblue;
+    }
+    b{
+        color: dodgerblue;
+    }
+</style>
+<body>
+    <h1>Panel de Control de Inventario - DAM</h1>
+    <div id="Productos">
+        <fieldset>
+            <legend><b>Datos de Producto</b></legend>
+            <form action="sin.php">
+                <table>
+                    <tr>
+                        <td>
+                            <label>Código ID: </label>
+                        </td>
+                        <td><input type="text" name="Nombre" size="20" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Categoría: </label>
+                        </td>
+                        <td>
+                            <select name="Categoría" id="">
+                                <option selected>Selecciona una opción</option>
+                                <option value="1">Hardware</option>
+                                <option value="2">Software</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Ficha Técnica (PDF): </label>
+                        </td>
+                        <td>
+                            <input type="file">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </fieldset>
+    </div>
+    <div id="Proovedor">
+        <fieldset>
+            <legend><b>Datos de Producto</b></legend>
+            <form action="sin.php">
+                <table>
+                    <tr>
+                        <td>
+                            <label>Empresa: </label>
+                        </td>
+                        <td><input type="text" name="Nombre" size="20" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Email de contacto: </label>
+                        </td>
+                        <td><input type="text" name="Nombre" size="20" required></td>
+                    </tr>
+                </table>
+            </form>
+        </fieldset>
+        <br>
+        <input type="submit" value="Submitear">
+        <input type="reset" value="Reset">
+    </div>
+    
+</body>
+</html>

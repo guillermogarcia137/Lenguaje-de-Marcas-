@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panel Azul · Interfaz de audio</title>
+</head>
+<style>
+:root{--bg:#eaf2fc;--panel:#fff;--ink:#0d2548;--mute:#4f6a92;--line:#c6d8f1;--acc:#1f6feb;--acc2:#0aa5d6;--hot:#e5484d;--track:#dbe7f8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#071426;--panel:#0d2038;--ink:#e3eeff;--mute:#8fa8cc;--line:#1b3558;--acc:#4c9aff;--acc2:#27c5f0;--hot:#ff6b70;--track:#112a48}}
+:root[data-theme="dark"]{--bg:#071426;--panel:#0d2038;--ink:#e3eeff;--mute:#8fa8cc;--line:#1b3558;--acc:#4c9aff;--acc2:#27c5f0;--hot:#ff6b70;--track:#112a48}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.6rem;margin:0 0 4px;letter-spacing:-.01em}
+p.sub{margin:0 0 20px;color:var(--mute);max-width:60ch}
+section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+h2{font-size:1rem;margin:0 0 12px}
+label{display:block;font-size:.88rem;color:var(--mute);margin:10px 0 4px}
+select,button{font:inherit;color:var(--ink)}
+select{width:100%;padding:9px 10px;border-radius:9px;border:1px solid var(--line);background:var(--bg)}
+button{padding:9px 16px;border-radius:9px;border:1px solid var(--acc);background:transparent;cursor:pointer}
+button.main{background:var(--acc);color:#fff}
+button[aria-pressed="true"]{background:var(--acc2);border-color:var(--acc2);color:#04202b}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.meters{display:grid;gap:12px}
+.m{display:grid;grid-template-columns:28px 1fr 64px;gap:10px;align-items:center}
+.bar{position:relative;height:26px;background:var(--track);border-radius:7px;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#1f6feb,#0aa5d6 70%,#7be0ff)}
+.fill.clip{background:var(--hot)}
+.peak{position:absolute;top:0;bottom:0;width:3px;background:var(--ink);left:0;opacity:.8}
+.db{font-variant-numeric:tabular-nums;text-align:right;color:var(--mute);font-size:.9rem}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.stat{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.stat:last-child{border:0}
+.stat b{font-variant-numeric:tabular-nums}
+#log{list-style:none;margin:0;padding:0;max-height:180px;overflow:auto;font-size:.92rem}
+#log li{padding:6px 0;border-bottom:1px solid var(--line)}
+#log li.bad{color:var(--hot);font-weight:600}
+#log li.ok{color:var(--acc)}
+.note{font-size:.88rem;color:var(--mute);margin:10px 0 0}
+.tag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.82rem;border:1px solid var(--line);color:var(--mute)}
+.tag.on{border-color:var(--acc2);color:var(--acc2)}
+</style>
+<body>
+<main>
+<h1>Panel azul</h1>
+<p class="sub">Un panel sencillo para tu interfaz de audio: elige entradas y salidas, mira los niveles y vigila si la Scarlett se desconecta.</p>
+
+<section>
+<h2>Dispositivos</h2>
+<div class="row"><button class="main" id="connect">Conectar entrada</button><span class="tag" id="state">Sin conectar</span></div>
+<label for="inSel">Entrada</label><select id="inSel"><option>Pulsa “Conectar entrada”</option></select>
+<label for="outSel">Salida</label><select id="outSel"><option>Predeterminada del sistema</option></select>
+</section>
+
+<section>
+<h2>Niveles de entrada</h2>
+<div class="meters">
+<div class="m"><span>1</span><div class="bar"><div class="fill" id="f0"></div><div class="peak" id="p0"></div></div><span class="db" id="d0">−∞ dB</span></div>
+<div class="m"><span>2</span><div class="bar"><div class="fill" id="f1"></div><div class="peak" id="p1"></div></div><span class="db" id="d1">−∞ dB</span></div>
+</div>
+<label for="gain">Ganancia por software</label>
+<input type="range" id="gain" min="0" max="150" value="100" aria-label="Ganancia">
+<div class="row" style="margin-top:12px">
+<button id="mon" aria-pressed="false">Monitorizar entrada</button>
+<button id="tone" aria-pressed="false">Tono de prueba</button>
+</div>
+<p class="note">Usa auriculares al monitorizar para evitar acoples. El tono de prueba suena suave a 440 Hz por la salida elegida: si se corta o chasquea, el problema es de USB o de buffer.</p>
+</section>
+
+<section>
+<h2>Estado</h2>
+<div class="stat"><span>Frecuencia de muestreo</span><b id="sr">–</b></div>
+<div class="stat"><span>Latencia base</span><b id="bl">–</b></div>
+<div class="stat"><span>Latencia de salida</span><b id="ol">–</b></div>
+<div class="stat"><span>Canales detectados</span><b id="ch">–</b></div>
+</section>
+
+<section>
+<h2>Registro de conexión</h2>
+<ul id="log"><li>Aquí aparecerá cada vez que la interfaz se conecte o desaparezca.</li></ul>
+<p class="note">Si ves “desconectada” sin haber tocado el cable, es el puerto USB, el cable o el ahorro de energía de Windows, no el programa de control.</p>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+let ctx=null,stream=null,src=null,split=null,an=[],gainN=null,monN=null,osc=null,oscG=null,peaks=[0,0],peakT=[0,0],raf=0,hadDev=null;
+const log=(t,c)=>{const li=document.createElement('li');if(c)li.className=c;li.textContent=new Date().toLocaleTimeString('es-ES')+'  '+t;const l=$('#log');if(l.children.length===1&&!l.children[0].className&&l.children[0].textContent.startsWith('Aquí'))l.innerHTML='';l.prepend(li)};
+const ensureCtx=async()=>{if(!ctx)ctx=new (window.AudioContext||window.webkitAudioContext)({latencyHint:'playback'});if(ctx.state==='suspended')await ctx.resume();return ctx};
+async function list(){
+  try{
+    const d=await navigator.mediaDevices.enumerateDevices();
+    const fill=(sel,kind,cur)=>{sel.innerHTML='';d.filter(x=>x.kind===kind).forEach(x=>{const o=document.createElement('option');o.value=x.deviceId;o.textContent=x.label||x.kind;sel.appendChild(o)});if(cur)sel.value=cur};
+    fill($('#inSel'),'audioinput',$('#inSel').value);fill($('#outSel'),'audiooutput',$('#outSel').value);
+    const has=d.some(x=>/scarlett|focusrite/i.test(x.label));
+    if(hadDev!==null&&has!==hadDev)log(has?'Focusrite Scarlett conectada':'Focusrite Scarlett desconectada',has?'ok':'bad');
+    if(hadDev===null&&has)log('Focusrite Scarlett detectada','ok');
+    hadDev=has;
+    const f=[...$('#inSel').options].find(o=>/scarlett|focusrite/i.test(o.textContent));
+    return {has,f};
+  }catch(e){log('No se pudo listar dispositivos: '+e.message,'bad')}
+}
+async function start(){
+  try{
+    await ensureCtx();
+    if(stream)stream.getTracks().forEach(t=>t.stop());
+    const id=$('#inSel').value;
+    stream=await navigator.mediaDevices.getUserMedia({audio:{deviceId:id&&id!=='undefined'?{exact:id}:undefined,echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:2}});
+    const r=await list();
+    if(r&&r.f&&!$('#inSel').dataset.touched){$('#inSel').value=r.f.value;if(r.f.value!==id){return start()}}
+    stream.getAudioTracks()[0].addEventListener('ended',()=>{log('La entrada se detuvo (¿se desenchufó?)','bad');$('#state').textContent='Entrada perdida';$('#state').classList.remove('on')});
+    build();
+    $('#state').textContent='Conectado';$('#state').classList.add('on');
+    log('Entrada activa: '+stream.getAudioTracks()[0].label,'ok');
+  }catch(e){log('Error: '+e.message+'. Revisa el permiso de micrófono del navegador.','bad');$('#state').textContent='Error'}
+}
+function build(){
+  cancelAnimationFrame(raf);
+  if(src)src.disconnect();
+  src=ctx.createMediaStreamSource(stream);
+  const n=Math.max(1,Math.min(2,src.channelCount||2));
+  split=ctx.createChannelSplitter(2);src.connect(split);
+  an=[0,1].map(i=>{const a=ctx.createAnalyser();a.fftSize=1024;split.connect(a,Math.min(i,n-1));return a});
+  gainN=ctx.createGain();gainN.gain.value=$('#gain').value/100;
+  monN=ctx.createGain();monN.gain.value=$('#mon').getAttribute('aria-pressed')==='true'?1:0;
+  src.connect(gainN);gainN.connect(monN);monN.connect(ctx.destination);
+  const s=stream.getAudioTracks()[0].getSettings();
+  $('#ch').textContent=s.channelCount||n;
+  info();draw();
+}
+function info(){
+  if(!ctx)return;
+  $('#sr').textContent=ctx.sampleRate+' Hz';
+  $('#bl').textContent=(ctx.baseLatency*1000).toFixed(1)+' ms';
+  $('#ol').textContent=ctx.outputLatency?(ctx.outputLatency*1000).toFixed(1)+' ms':'no disponible';
+}
+const buf=new Float32Array(1024);
+function draw(){
+  an.forEach((a,i)=>{
+    a.getFloatTimeDomainData(buf);
+    let m=0,s=0;for(const v of buf){const x=Math.abs(v);if(x>m)m=x;s+=v*v}
+    const g=gainN?gainN.gain.value:1,rms=Math.sqrt(s/buf.length)*g,db=rms>0?20*Math.log10(rms):-Infinity;
+    const pct=Math.max(0,Math.min(100,(db+60)/60*100));
+    const f=$('#f'+i);f.style.width=pct+'%';f.classList.toggle('clip',m*g>=0.99);
+    const now=performance.now();
+    if(pct>=peaks[i]||now-peakT[i]>1200){peaks[i]=pct;peakT[i]=now}
+    $('#p'+i).style.left='calc('+peaks[i]+'% - 3px)';
+    $('#d'+i).textContent=isFinite(db)?db.toFixed(0)+' dB':'−∞ dB';
+  });
+  raf=requestAnimationFrame(draw);
+}
+$('#connect').onclick=start;
+$('#inSel').onchange=()=>{$('#inSel').dataset.touched=1;start()};
+$('#outSel').onchange=async()=>{await ensureCtx();try{if(ctx.setSinkId){await ctx.setSinkId($('#outSel').value);log('Salida cambiada','ok');info()}else log('Tu navegador no permite elegir salida; usa la del sistema.')}catch(e){log('No se pudo cambiar la salida: '+e.message,'bad')}};
+$('#gain').oninput=e=>{if(gainN)gainN.gain.value=e.target.value/100};
+$('#mon').onclick=async e=>{const b=e.currentTarget,on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);if(monN)monN.gain.value=on?1:0;else if(on)log('Conecta primero la entrada.')};
+$('#tone').onclick=async e=>{
+  const b=e.currentTarget,on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);
+  await ensureCtx();
+  if(on){osc=ctx.createOscillator();osc.frequency.value=440;oscG=ctx.createGain();oscG.gain.value=0.08;osc.connect(oscG);oscG.connect(ctx.destination);osc.start();log('Tono de prueba iniciado')}
+  else if(osc){osc.stop();osc.disconnect();osc=null;log('Tono de prueba detenido')}
+  info();
+};
+if(navigator.mediaDevices){navigator.mediaDevices.addEventListener('devicechange',list);list()}
+else log('Este navegador no permite acceso a audio.','bad');
+</script>
+</body>
+</html>

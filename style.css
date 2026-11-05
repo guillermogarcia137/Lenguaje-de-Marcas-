@@ -30,7 +30,7 @@ a {
     border-radius: 10px;
     width: fit-content;
     text-align:center;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
     position:absolute;
@@ -38,7 +38,7 @@ a {
 
 }
 
-.enlaces a {
+.enlaces a,p  {
     display: block;
     color: #4da6ff;
     text-decoration: none;
@@ -54,18 +54,16 @@ a {
     transform: translateX(5px);
 }
 
-
-.IconoGitHub {
-    position:fixed;
+.iconos {
+    position: fixed;
     top: 2%;
-    left:2%;
-    z-index: 1000; /* Asegura que se mantenga por encima de otros elementos */
+    left: 2%;
+    z-index: 1000;
+    display: flex;
+    gap: 1rem;
 }
 
-/* Aplica el tamaño a la imagen dentro del botón */
-.IconoGitHub img {
-    width: 15%;   /* Cambia este número si lo quieres más grande o más pequeño */
-    /*height: 40px;*/
-    display:block;
-    float: left;
-}  
+.iconos img {
+    width: clamp(40px, 5vw, 70px);
+    display: block;
+}
