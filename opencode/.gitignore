@@ -1,0 +1,8 @@
+bin/
+cache/
+data/
+dam/
+state/
+node_modules/
+*.bat
+*.exe
