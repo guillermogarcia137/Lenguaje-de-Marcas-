@@ -20,6 +20,7 @@ const tarjetasProyecto = Array.from(
 // Este valor recuerda qué filtro ha elegido la persona. «all» muestra todos.
 let categoriaSeleccionada = "all";
 
+// Esta función se comparte entre la consulta y las tarjetas: comparar ambos textos con las mismas reglas evita resultados inconsistentes.
 function prepararTexto(texto) {
   // Quitamos las tildes y pasamos a minúsculas para que «codigo» encuentre
   // también «Código». Esto no cambia el texto que se ve en la página.
@@ -29,6 +30,7 @@ function prepararTexto(texto) {
     .toLowerCase();
 }
 
+// Es el único punto que combina categoría y búsqueda; después actualiza las tarjetas, los grupos y el contador juntos.
 function actualizarProyectos() {
   const busqueda = prepararTexto(campoBusqueda.value.trim());
   let cantidadVisible = 0;

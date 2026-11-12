@@ -32,15 +32,18 @@
     // Si no hay un valor válido, la página sigue funcionando con el tema Azul.
   }
 
+  // Busca una definición por id; si una preferencia antigua ya no existe devuelve el tema de respaldo.
   function obtenerTema(id) {
     return temas.find((tema) => tema.id === id) || temas[0];
   }
 
+  // La decisión combina la preferencia guardada con la de accesibilidad del sistema antes de activar decoraciones.
   function movimientoActivo() {
     // La preferencia del sistema tiene prioridad sobre el interruptor de la web.
     return permitirAnimaciones && !preferenciaSistema.matches;
   }
 
+  // Convierte la definición del catálogo en variables y atributos del documento; CSS usa esos valores para dibujar el tema.
   function aplicarTema(id) {
     const tema = obtenerTema(id);
     temaActual = tema.id;
@@ -87,6 +90,7 @@
     actualizarAscii();
   }
 
+  // Persiste las opciones en este navegador para recuperarlas en visitas posteriores, sin enviarlas a GitHub.
   function guardarPreferencias() {
     const aviso = document.querySelector("#estado-tema");
     try {
@@ -110,6 +114,7 @@
     "    +---------+\n    |\\         \\\n    | +---------+\n    + |         |\n     \\|         |\n      +---------+",
   ];
 
+  // Actualiza solo la ilustración de caracteres; los enlaces y textos de proyectos siguen siendo elementos normales del HTML.
   function actualizarAscii() {
     // Limpiamos el temporizador anterior para no acumular varias animaciones.
     clearInterval(temporizadorAscii);
@@ -172,6 +177,7 @@
     const botonesTemas = Array.from(
       document.querySelectorAll("[data-filtrar-temas]"),
     );
+    // Busca sobre el catálogo de temas sin modificarlo; los filtros afectan únicamente a las tarjetas del selector.
     function filtrarTemas() {
       // El filtro del catálogo es independiente de los filtros de proyectos.
       // Normalizamos las tildes para que «indigo» encuentre «Índigo».
@@ -219,6 +225,7 @@
       .querySelector("#cerrar-temas")
       .addEventListener("click", () => dialogo.close());
 
+    // Sincroniza el texto y el estado accesible del control que permite detener las animaciones.
     function actualizarInterruptor() {
       interruptor.checked = movimientoActivo();
       interruptor.disabled = preferenciaSistema.matches;
