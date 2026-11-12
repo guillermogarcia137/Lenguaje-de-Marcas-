@@ -1,0 +1,546 @@
+/* CONTROLES COMPARTIDOS
+   Estos estilos solo se cargan en /proyectos/ y en la 404, no en el inicio. */
+.icono-pixel {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+.out-icon {
+  fill: currentColor;
+  stroke: none;
+}
+.site-header {
+  flex-wrap: wrap;
+  padding: 16px 0;
+}
+.site-header nav {
+  align-items: center;
+}
+.boton-temas {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border: 1px solid #567fbe;
+  border-radius: 9px;
+  background: linear-gradient(130deg, #1958b8, #163669);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+.boton-temas:hover {
+  border-color: #c0dbff;
+}
+.boton-temas:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.boton-temas .icono-pixel {
+  width: 18px;
+  height: 18px;
+}
+.boton-temas:focus-visible,
+.boton-icono:focus-visible,
+.opcion-tema:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.search .icono-pixel {
+  width: 16px;
+  height: 16px;
+}
+
+/* DIÁLOGO DE TEMAS
+   Las miniaturas usan variables propias para enseñar cada paleta sin cambiar
+   el tema de toda la página. aria-pressed marca la selección en JavaScript. */
+.dialogo-temas {
+  width: min(820px, calc(100% - 32px));
+  max-height: 88dvh;
+  margin: auto;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg);
+  color: var(--ink);
+  overflow: auto;
+}
+.dialogo-temas::backdrop {
+  background: #020815b8;
+  backdrop-filter: blur(7px);
+}
+.cabecera-temas {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.cabecera-temas h2 {
+  margin: 0;
+  font-size: 26px;
+}
+.cabecera-temas p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.boton-icono {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+}
+.lista-temas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.opcion-tema {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  padding: 8px 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  color: var(--ink);
+  background: var(--panel);
+  cursor: pointer;
+  font: inherit;
+}
+.opcion-tema[aria-pressed="true"] {
+  border: 2px solid var(--accent);
+  padding: 7px 7px 11px;
+}
+.opcion-tema strong {
+  padding: 0 4px;
+  font-size: 12px;
+}
+.opcion-tema small {
+  padding: 0 4px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.miniatura-tema {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 86px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--mini-fondo);
+}
+.mini-ventana {
+  position: relative;
+  width: 72%;
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  padding: 22px 7px 7px;
+  border: 1px solid var(--mini-acento);
+  background: var(--mini-panel);
+  border-radius: 5px;
+}
+.mini-ventana::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 8px;
+  width: 38%;
+  height: 4px;
+  background: var(--mini-acento);
+}
+.mini-ventana i {
+  flex: 1;
+  height: 25px;
+  border: 1px solid var(--mini-acento);
+  opacity: 0.7;
+  background: color-mix(in srgb, var(--mini-acento) 15%, var(--mini-panel));
+}
+.miniatura-tema[data-vista="blueprint"] {
+  background-image:
+    linear-gradient(#a4cfff1f 1px, transparent 1px),
+    linear-gradient(90deg, #a4cfff1f 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+.miniatura-tema[data-vista="pixel"] .mini-ventana {
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--mini-acento);
+}
+.miniatura-tema[data-vista="degradado"],
+.miniatura-tema[data-vista="cristal"] {
+  background-image:
+    radial-gradient(ellipse at 20% 20%, #4175c9, transparent 70%),
+    radial-gradient(ellipse at 95% 80%, #20418b, transparent 75%);
+}
+.miniatura-tema[data-vista="cristal"] .mini-ventana {
+  background: #132b4baa;
+  backdrop-filter: blur(4px);
+}
+.miniatura-tema[data-vista="ascii"] .mini-ventana {
+  border-style: dashed;
+  border-radius: 0;
+}
+.miniatura-tema[data-vista="isometrico"] .mini-ventana {
+  transform: skewY(-8deg);
+  box-shadow: 4px 6px 0 #366298;
+}
+.miniatura-tema[data-vista="indigo"] .mini-ventana {
+  border-radius: 0;
+  border-left-width: 6px;
+}
+.miniatura-tema[data-vista="cinetico"] {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 6px,
+    #8cb8fa24 6px 8px
+  );
+}
+.opciones-movimiento {
+  border-top: 1px solid var(--line);
+  margin-top: 22px;
+  padding-top: 17px;
+}
+.opciones-movimiento label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+.opciones-movimiento input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+.opciones-movimiento small,
+.opciones-movimiento p {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin: 10px 0 0;
+}
+
+/* DIBUJOS DECORATIVOS
+   Cada tema enseña solo su figura. Los SVG están dibujados en arte/ y no
+   incluyen contenido descargado de las referencias ni texto necesario para usar la página. */
+.intro {
+  display: flex;
+  max-width: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+.intro-texto {
+  min-width: 0;
+}
+.arte-tema {
+  width: 260px;
+  height: 180px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+}
+.arte-tema > svg {
+  width: 100%;
+  height: 100%;
+}
+.arte-tema .dibujo-engranaje {
+  width: 180px;
+  height: 180px;
+}
+.escena-pixel {
+  position: relative;
+  width: 256px;
+  height: 120px;
+}
+.paisaje-pixel {
+  position: absolute;
+  inset: 0;
+  width: 256px;
+  height: 96px;
+}
+.robot-pixel {
+  position: absolute;
+  width: 24px;
+  height: 32px;
+  left: 43px;
+  top: 45px;
+}
+#dibujo-ascii {
+  margin: 0;
+  white-space: pre;
+  font:
+    17px/1.3 ui-monospace,
+    monospace;
+  min-height: 160px;
+}
+
+/* BLUEPRINT: cuadrícula y líneas de plano, con una figura geométrica propia. */
+:root[data-tema="blueprint"] body::before {
+  background-image:
+    linear-gradient(#a6cfff0e 1px, transparent 1px),
+    linear-gradient(90deg, #a6cfff0e 1px, transparent 1px),
+    linear-gradient(#a6cfff12 1px, transparent 1px),
+    linear-gradient(90deg, #a6cfff12 1px, transparent 1px);
+  background-size:
+    24px 24px,
+    24px 24px,
+    96px 96px,
+    96px 96px;
+}
+:root[data-tema="blueprint"] .project,
+:root[data-tema="blueprint"] .repo-list {
+  border-radius: 3px;
+}
+:root[data-tema="blueprint"] .project-art::before {
+  background: none;
+}
+:root[data-tema="blueprint"] .project-art {
+  background: transparent;
+  border-bottom-style: dashed;
+}
+
+/* PÍXEL: bordes cuadrados e iconos de cuadrícula, sin fuentes ni sprites ajenos. */
+:root[data-tema="pixel"],
+:root[data-tema="ascii"] {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+:root[data-tema="pixel"] .project,
+:root[data-tema="pixel"] .repo-list,
+:root[data-tema="pixel"] .primary,
+:root[data-tema="pixel"] .search,
+:root[data-tema="pixel"] .monogram {
+  border-radius: 0;
+  border-width: 2px;
+}
+:root[data-tema="pixel"] .project {
+  box-shadow: 5px 5px 0 color-mix(in srgb, var(--accent) 25%, var(--bg));
+}
+:root[data-tema="pixel"] h1 {
+  letter-spacing: -2px;
+}
+:root[data-tema="pixel"] .project-art::before {
+  background-size: 16px 16px;
+}
+
+/* DEGRADADO Y CRISTAL: solo azules. Las tarjetas conservan una base oscura
+   para que el texto siga siendo legible cuando se mueva el fondo. */
+:root[data-tema="degradado"] body::before,
+:root[data-tema="cristal"] body::before {
+  inset: -15%;
+  background:
+    radial-gradient(ellipse at 15% 15%, #1762a8b0, transparent 45%),
+    radial-gradient(ellipse at 88% 30%, #224bbc9c, transparent 45%),
+    radial-gradient(ellipse at 40% 85%, #127a9b66, transparent 50%);
+}
+:root[data-tema="cristal"] .project,
+:root[data-tema="cristal"] .repo,
+:root[data-tema="cristal"] .search {
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  backdrop-filter: blur(16px);
+}
+:root[data-tema="cristal"] .project-art {
+  background: linear-gradient(130deg, #5288bc33, #1b386455);
+}
+
+/* ASCII: las formas salen de caracteres. El cambio de fotograma se explica
+   en actualizarAscii(), dentro de temas.js. */
+:root[data-tema="ascii"] .project,
+:root[data-tema="ascii"] .repo-list {
+  border-radius: 0;
+}
+:root[data-tema="ascii"] .project-art {
+  background: var(--panel);
+  border-bottom-style: dashed;
+}
+:root[data-tema="ascii"] .project-art::before {
+  background: none;
+}
+
+/* ÍNDIGO: bloques planos y un borde lateral inspirado en diapositivas técnicas. */
+:root[data-tema="indigo"] .project,
+:root[data-tema="indigo"] .repo-list {
+  border-radius: 2px;
+}
+:root[data-tema="indigo"] .project-info {
+  border-left: 4px solid var(--accent);
+}
+:root[data-tema="indigo"] .project-art::before {
+  background: none;
+}
+:root[data-tema="cinetico"] .project-art::before {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 9px,
+    #c8ddff1e 9px 11px
+  );
+  mask-image: none;
+}
+
+/* MOVIMIENTO OPCIONAL
+   Los keyframes son los pasos de una animación. Solo los activamos cuando
+   data-movimiento="si". El sistema y el interruptor pueden detenerlos. */
+@keyframes girar-plano {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes saltar-pixel {
+  0%,
+  70%,
+  100% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes mover-malla {
+  to {
+    transform: translate(3%, -2%) scale(1.04);
+  }
+}
+@keyframes flotar-mesa {
+  to {
+    transform: translateY(-6px);
+  }
+}
+@keyframes mover-lineas {
+  to {
+    transform: translateX(6px) skewY(2deg);
+  }
+}
+:root[data-movimiento="si"] .dibujo-engranaje {
+  animation: girar-plano 45s linear infinite;
+}
+:root[data-movimiento="si"] .robot-pixel {
+  animation: saltar-pixel 4s steps(5) infinite;
+}
+:root[data-movimiento="si"][data-tema="degradado"] body::before,
+:root[data-movimiento="si"][data-tema="cristal"] body::before {
+  animation: mover-malla 14s ease-in-out infinite alternate;
+}
+:root[data-movimiento="si"] .dibujo-isometrico {
+  animation: flotar-mesa 5s ease-in-out infinite alternate;
+}
+:root[data-movimiento="si"] .dibujo-cinetico {
+  animation: mover-lineas 5s ease-in-out infinite alternate;
+}
+:root[data-movimiento="no"] *,
+:root[data-movimiento="no"] *::before,
+:root[data-movimiento="no"] *::after {
+  animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Pantallas pequeñas: mantenemos los controles visibles y bajamos el tamaño
+   de las miniaturas. No hace falta un menú oculto para elegir un tema. */
+@media (max-width: 680px) {
+  .site-header {
+    gap: 10px;
+  }
+  .site-header nav {
+    gap: 10px;
+    margin-left: auto;
+  }
+  .boton-temas {
+    padding: 8px 9px;
+    font-size: 11px;
+  }
+  .intro {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .arte-tema {
+    align-self: center;
+    height: 140px;
+    width: 230px;
+  }
+  .arte-tema .dibujo-engranaje {
+    width: 130px;
+    height: 130px;
+  }
+  .dialogo-temas {
+    padding: 18px;
+  }
+  .lista-temas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .miniatura-tema {
+    height: 75px;
+  }
+  #dibujo-ascii {
+    font-size: 14px;
+    min-height: 130px;
+  }
+}
+/* Con 52 opciones, la búsqueda y los filtros evitan recorrer todo el catálogo. */
+.herramientas-temas {
+  margin-bottom: 16px;
+}
+.buscar-temas input {
+  width: 100%;
+  padding: 11px 13px;
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+}
+.buscar-temas input::placeholder {
+  color: var(--muted);
+}
+.filtros-temas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.filtros-temas button {
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 6px;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+.filtros-temas button[aria-pressed="true"] {
+  border-color: var(--link);
+  color: var(--link);
+}
+#contador-temas {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 10px 0 0;
+}
+:root[data-estilo="terminal"] {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+:root[data-estilo="nothing"] h1 {
+  letter-spacing: -2px;
+  font-weight: 650;
+}

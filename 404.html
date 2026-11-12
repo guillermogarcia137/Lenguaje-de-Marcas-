@@ -1,21 +1,26 @@
 <!doctype html>
 <html lang="es">
+  <!-- PÁGINA 404: reutiliza los temas del menú. El index principal del sitio no se modifica. -->
   <head>
     <meta charset="utf-8" />
+    <meta name="theme-color" content="#0a1020" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>404 · Por aquí no era · Guillermo García</title>
     <link rel="icon" href="/img/icons8-rebel-480.png" />
     <link rel="stylesheet" href="/proyectos/menu.css" />
+    <!-- La apariencia se recupera antes de pintar el contenido para evitar destellos. -->
+    <link rel="stylesheet" href="/proyectos/temas.css" />
+    <script src="/proyectos/paletas-existentes.js"></script>
+    <script src="/proyectos/catalogo-temas.js"></script>
+    <script src="/proyectos/temas.js"></script>
   </head>
   <body>
     <div class="shell">
       <header class="site-header">
         <a class="identity" href="/" aria-label="Guillermo García, inicio"
           ><span class="monogram">G/</span
-          ><span
-            >Guillermo García<small>GUILLERMOGARCIA137</small></span
-          ></a
+          ><span>Guillermo García<small>GUILLERMOGARCIA137</small></span></a
         >
         <nav aria-label="Principal">
           <a href="/">Inicio</a
@@ -24,9 +29,20 @@
             target="_blank"
             rel="noopener noreferrer"
             >GitHub
-            <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M4 12 12 4M4 4h8v8" /></svg
+            <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
           ></a>
+          <button
+            type="button"
+            id="abrir-temas"
+            class="boton-temas"
+            aria-haspopup="dialog"
+            disabled
+          >
+            <svg class="icono-pixel" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="/proyectos/arte/iconos.svg#paleta"></use></svg
+            ><span>Temas</span>
+          </button>
         </nav>
       </header>
       <main class="error-page">
@@ -41,8 +57,10 @@
           <a class="primary" href="/proyectos/"
             >Ir a los proyectos
             <span aria-hidden="true"
-              ><svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M4 12 12 4M4 4h8v8" /></svg></span></a
+              ><svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use
+                  href="/proyectos/arte/iconos.svg#abrir"
+                ></use></svg></span></a
           ><a class="secondary" href="/">Volver al inicio</a>
         </div>
       </main>
@@ -50,10 +68,81 @@
         <span>Guillermo García</span
         ><a href="/"
           >Inicio
-          <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M4 12 12 4M4 4h8v8" /></svg
+          <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
         ></a>
       </footer>
     </div>
+    <!-- El cuadro de temas se abre como diálogo: el navegador gestiona el foco y Escape. -->
+    <dialog
+      id="dialogo-temas"
+      class="dialogo-temas"
+      aria-labelledby="titulo-temas"
+    >
+      <div class="cabecera-temas">
+        <div>
+          <h2 id="titulo-temas">Temas</h2>
+          <p>Actual: <strong id="nombre-tema">Azul</strong></p>
+        </div>
+        <button
+          type="button"
+          id="cerrar-temas"
+          class="boton-icono"
+          aria-label="Cerrar temas"
+        >
+          <svg class="icono-pixel" aria-hidden="true">
+            <use href="/proyectos/arte/iconos.svg#cerrar"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="herramientas-temas">
+        <label class="buscar-temas"
+          ><span class="sr-only">Buscar tema</span
+          ><input type="search" id="buscar-tema" placeholder="Buscar tema…"
+        /></label>
+        <div class="filtros-temas" aria-label="Filtrar temas">
+          <button type="button" data-filtrar-temas="todos" aria-pressed="true">
+            Todos</button
+          ><button
+            type="button"
+            data-filtrar-temas="nuevos"
+            aria-pressed="false"
+          >
+            Nuevos</button
+          ><button
+            type="button"
+            data-filtrar-temas="claros"
+            aria-pressed="false"
+          >
+            Claros</button
+          ><button
+            type="button"
+            data-filtrar-temas="oscuros"
+            aria-pressed="false"
+          >
+            Oscuros</button
+          ><button
+            type="button"
+            data-filtrar-temas="omarchy"
+            aria-pressed="false"
+          >
+            Omarchy
+          </button>
+        </div>
+        <p id="contador-temas" role="status" aria-live="polite"></p>
+      </div>
+      <div id="lista-temas" class="lista-temas" aria-label="Elegir tema"></div>
+      <div class="opciones-movimiento">
+        <label
+          ><input type="checkbox" id="animaciones-tema" checked />
+          Animaciones</label
+        ><small id="aviso-movimiento" hidden
+          >Tu dispositivo tiene activado el movimiento reducido.</small
+        >
+        <p id="estado-tema" role="status" aria-live="polite">
+          Se guarda en este navegador.
+        </p>
+      </div>
+    </dialog>
   </body>
 </html>

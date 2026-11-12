@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="es">
+  <!-- MENÚ DE PROYECTOS: tarjetas y enlaces en este HTML; filtros en menu.js; apariencia en temas.js. -->
   <head>
     <meta charset="utf-8" />
+    <meta name="theme-color" content="#0a1020" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
@@ -10,6 +12,11 @@
     <title>Proyectos · Guillermo García</title>
     <link rel="icon" href="/img/icons8-rebel-480.png" />
     <link rel="stylesheet" href="./menu.css" />
+    <!-- La apariencia se recupera antes de pintar el contenido para evitar destellos. -->
+    <link rel="stylesheet" href="/proyectos/temas.css" />
+    <script src="/proyectos/paletas-existentes.js"></script>
+    <script src="/proyectos/catalogo-temas.js"></script>
+    <script src="/proyectos/temas.js"></script>
   </head>
   <body>
     <a class="skip" href="#projects">Saltar a los proyectos</a>
@@ -17,9 +24,7 @@
       <header class="site-header">
         <a class="identity" href="/" aria-label="Guillermo García, inicio"
           ><span class="monogram">G/</span
-          ><span
-            >Guillermo García<small>GUILLERMOGARCIA137</small></span
-          ></a
+          ><span>Guillermo García<small>GUILLERMOGARCIA137</small></span></a
         >
         <nav aria-label="Principal">
           <a href="/">Inicio</a
@@ -28,17 +33,62 @@
             target="_blank"
             rel="noopener noreferrer"
             >GitHub
-            <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M4 12 12 4M4 4h8v8" /></svg
+            <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
           ></a>
+          <button
+            type="button"
+            id="abrir-temas"
+            class="boton-temas"
+            aria-haspopup="dialog"
+            disabled
+          >
+            <svg class="icono-pixel" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="/proyectos/arte/iconos.svg#paleta"></use></svg
+            ><span>Temas</span>
+          </button>
         </nav>
       </header>
       <main id="projects">
         <div class="intro">
-          <h1>Proyectos</h1>
-          <p>
-            Aplicaciones web, herramientas y ejercicios.
-          </p>
+          <div class="intro-texto">
+            <h1>Proyectos</h1>
+            <p>Aplicaciones web, herramientas y ejercicios.</p>
+          </div>
+          <div id="arte-tema" class="arte-tema" aria-hidden="true" hidden>
+            <svg
+              data-arte="blueprint"
+              class="dibujo-engranaje"
+              viewBox="0 0 180 180"
+              hidden
+            >
+              <use href="/proyectos/arte/dibujos.svg#engranaje"></use>
+            </svg>
+            <div data-arte="pixel" class="escena-pixel" hidden>
+              <svg class="paisaje-pixel" viewBox="0 0 256 96">
+                <use href="/proyectos/arte/dibujos.svg#paisaje"></use></svg
+              ><svg class="robot-pixel" viewBox="0 0 24 32">
+                <use href="/proyectos/arte/dibujos.svg#robot"></use>
+              </svg>
+            </div>
+            <pre id="dibujo-ascii" data-arte="ascii" hidden></pre>
+            <svg
+              data-arte="isometrico"
+              class="dibujo-isometrico"
+              viewBox="0 0 260 200"
+              hidden
+            >
+              <use href="/proyectos/arte/dibujos.svg#isometrico"></use>
+            </svg>
+            <svg
+              data-arte="cinetico"
+              class="dibujo-cinetico"
+              viewBox="0 0 270 190"
+              hidden
+            >
+              <use href="/proyectos/arte/dibujos.svg#lineas"></use>
+            </svg>
+          </div>
         </div>
         <div class="toolbar">
           <div class="filters" aria-label="Filtrar proyectos">
@@ -71,13 +121,11 @@
               <div class="project-art pv" aria-hidden="true">
                 <span>PV</span
                 ><svg
-                  viewBox="0 0 88 88"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
+                  class="icono-pixel"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
-                  <rect x="12" y="9" width="62" height="72" rx="8" />
-                  <path d="M22 21h42v26H22zM22 55h17v15H22zM47 55h17v15H47z" />
+                  <use href="/proyectos/arte/iconos.svg#libro"></use>
                 </svg>
               </div>
               <div class="project-info">
@@ -95,10 +143,12 @@
                     <span aria-hidden="true"
                       ><svg
                         class="out-icon"
-                        viewBox="0 0 16 16"
+                        viewBox="0 0 24 24"
                         aria-hidden="true"
                       >
-                        <path d="M4 12 12 4M4 4h8v8" /></svg></span></a
+                        <use
+                          href="/proyectos/arte/iconos.svg#abrir"
+                        ></use></svg></span></a
                   ><a
                     class="code-link"
                     href="https://github.com/guillermogarcia137/panelverse"
@@ -108,10 +158,10 @@
                     >Código
                     <svg
                       class="out-icon"
-                      viewBox="0 0 16 16"
+                      viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path d="M4 12 12 4M4 4h8v8" /></svg
+                      <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                   ></a>
                 </div>
               </div>
@@ -120,23 +170,17 @@
               <div class="project-art cv" aria-hidden="true">
                 <span>CV</span
                 ><svg
-                  viewBox="0 0 88 88"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
+                  class="icono-pixel"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
-                  <path
-                    d="M15 30h58m-15-15 15 15-15 15M73 62H15m15-15L15 62l15 15"
-                  />
-                  <circle cx="44" cy="46" r="37" opacity=".3" />
+                  <use href="/proyectos/arte/iconos.svg#convertir"></use>
                 </svg>
               </div>
               <div class="project-info">
                 <span class="tag">02 / ARCHIVOS</span>
                 <h3>ConvertVerse</h3>
-                <p>
-                  Conversor de documentos, imágenes, audio y vídeo.
-                </p>
+                <p>Conversor de documentos, imágenes, audio y vídeo.</p>
                 <div class="actions">
                   <a
                     class="primary"
@@ -146,10 +190,12 @@
                     <span aria-hidden="true"
                       ><svg
                         class="out-icon"
-                        viewBox="0 0 16 16"
+                        viewBox="0 0 24 24"
                         aria-hidden="true"
                       >
-                        <path d="M4 12 12 4M4 4h8v8" /></svg></span></a
+                        <use
+                          href="/proyectos/arte/iconos.svg#abrir"
+                        ></use></svg></span></a
                   ><a
                     class="code-link"
                     href="https://github.com/guillermogarcia137/convertverse"
@@ -159,10 +205,10 @@
                     >Código
                     <svg
                       class="out-icon"
-                      viewBox="0 0 16 16"
+                      viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path d="M4 12 12 4M4 4h8v8" /></svg
+                      <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                   ></a>
                 </div>
               </div>
@@ -171,16 +217,11 @@
               <div class="project-art ru" aria-hidden="true">
                 <span>RU</span
                 ><svg
-                  viewBox="0 0 88 88"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
+                  class="icono-pixel"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
-                  <circle cx="44" cy="44" r="33" />
-                  <circle cx="44" cy="44" r="6" />
-                  <path
-                    d="M44 11v27m0 12v27M11 44h27m12 0h27M21 21l19 19m8 8 19 19M21 67l19-19m8-8 19-19M44 2l-5 8h10z"
-                  />
+                  <use href="/proyectos/arte/iconos.svg#ruleta"></use>
                 </svg>
               </div>
               <div class="project-info">
@@ -193,10 +234,12 @@
                     <span aria-hidden="true"
                       ><svg
                         class="out-icon"
-                        viewBox="0 0 16 16"
+                        viewBox="0 0 24 24"
                         aria-hidden="true"
                       >
-                        <path d="M4 12 12 4M4 4h8v8" /></svg></span></a
+                        <use
+                          href="/proyectos/arte/iconos.svg#abrir"
+                        ></use></svg></span></a
                   ><a
                     class="code-link"
                     href="https://github.com/guillermogarcia137/ruleta"
@@ -206,10 +249,10 @@
                     >Código
                     <svg
                       class="out-icon"
-                      viewBox="0 0 16 16"
+                      viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path d="M4 12 12 4M4 4h8v8" /></svg
+                      <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                   ></a>
                 </div>
               </div>
@@ -237,8 +280,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Activar Windows"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -255,8 +298,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Aplicaciones en Java"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -273,8 +316,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Aplicaciones en PHP"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -291,8 +334,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Atajos para iPhone"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -309,8 +352,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Herramientas en C++"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -327,8 +370,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Herramientas en C#"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -345,8 +388,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Herramientas en Go"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -363,8 +406,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Herramientas en Rust"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -381,8 +424,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Mi OpenCode"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -399,8 +442,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Profile README Generator"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -417,8 +460,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Scripts en JavaScript"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -435,8 +478,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Scripts en Python"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -453,8 +496,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Scripts para Windows"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -471,8 +514,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Tools"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -487,16 +530,16 @@
                   href="/1EVAL_HTMLyCSS_AplicacionesWeb_GuillermoGarcia/"
                   aria-label="Abrir HTML y CSS · Primera evaluación"
                   >Abrir web
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg></a
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg></a
                 ><a
                   href="https://github.com/guillermogarcia137/1EVAL_HTMLyCSS_AplicacionesWeb_GuillermoGarcia"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Repositorio de HTML y CSS · Primera evaluación"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -509,16 +552,16 @@
                 <span class="category">APRENDIZAJE</span
                 ><a href="/Caso2/" aria-label="Abrir SkillTech Academy"
                   >Abrir web
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg></a
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg></a
                 ><a
                   href="https://github.com/guillermogarcia137/Caso2"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Repositorio de SkillTech Academy"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -533,16 +576,16 @@
                   href="/Lenguaje-de-marcas/"
                   aria-label="Abrir Lenguaje de marcas"
                   >Abrir web
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg></a
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg></a
                 ><a
                   href="https://github.com/guillermogarcia137/Lenguaje-de-marcas"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Lenguaje de marcas"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -559,8 +602,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Primeros pasos en Java"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -577,8 +620,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Primeros pasos en SQL"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -595,8 +638,8 @@
                   rel="noopener noreferrer"
                   aria-label="Repositorio de Scripts · 2.º SMR"
                   >Repositorio
-                  <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M4 12 12 4M4 4h8v8" /></svg
+                  <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
                 ></a>
               </div>
             </article>
@@ -617,11 +660,82 @@
         <span>Guillermo García</span
         ><a href="/"
           >Inicio
-          <svg class="out-icon" viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M4 12 12 4M4 4h8v8" /></svg
+          <svg class="out-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="/proyectos/arte/iconos.svg#abrir"></use></svg
         ></a>
       </footer>
     </div>
     <script src="./menu.js" defer></script>
+    <!-- El cuadro de temas se abre como diálogo: el navegador gestiona el foco y Escape. -->
+    <dialog
+      id="dialogo-temas"
+      class="dialogo-temas"
+      aria-labelledby="titulo-temas"
+    >
+      <div class="cabecera-temas">
+        <div>
+          <h2 id="titulo-temas">Temas</h2>
+          <p>Actual: <strong id="nombre-tema">Azul</strong></p>
+        </div>
+        <button
+          type="button"
+          id="cerrar-temas"
+          class="boton-icono"
+          aria-label="Cerrar temas"
+        >
+          <svg class="icono-pixel" aria-hidden="true">
+            <use href="/proyectos/arte/iconos.svg#cerrar"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="herramientas-temas">
+        <label class="buscar-temas"
+          ><span class="sr-only">Buscar tema</span
+          ><input type="search" id="buscar-tema" placeholder="Buscar tema…"
+        /></label>
+        <div class="filtros-temas" aria-label="Filtrar temas">
+          <button type="button" data-filtrar-temas="todos" aria-pressed="true">
+            Todos</button
+          ><button
+            type="button"
+            data-filtrar-temas="nuevos"
+            aria-pressed="false"
+          >
+            Nuevos</button
+          ><button
+            type="button"
+            data-filtrar-temas="claros"
+            aria-pressed="false"
+          >
+            Claros</button
+          ><button
+            type="button"
+            data-filtrar-temas="oscuros"
+            aria-pressed="false"
+          >
+            Oscuros</button
+          ><button
+            type="button"
+            data-filtrar-temas="omarchy"
+            aria-pressed="false"
+          >
+            Omarchy
+          </button>
+        </div>
+        <p id="contador-temas" role="status" aria-live="polite"></p>
+      </div>
+      <div id="lista-temas" class="lista-temas" aria-label="Elegir tema"></div>
+      <div class="opciones-movimiento">
+        <label
+          ><input type="checkbox" id="animaciones-tema" checked />
+          Animaciones</label
+        ><small id="aviso-movimiento" hidden
+          >Tu dispositivo tiene activado el movimiento reducido.</small
+        >
+        <p id="estado-tema" role="status" aria-live="polite">
+          Se guarda en este navegador.
+        </p>
+      </div>
+    </dialog>
   </body>
 </html>

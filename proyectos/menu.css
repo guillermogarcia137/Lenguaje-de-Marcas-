@@ -1,11 +1,17 @@
+/* Diseño base del menú. Los colores son variables: temas.js puede cambiarlos
+   sin duplicar las reglas de disposición, tamaños y navegación. */
 :root {
   color-scheme: dark;
-  --bg: #0a0f1b;
-  --panel: #101a2a;
-  --line: #293247;
-  --ink: #ecf0f7;
-  --muted: #9aa7bc;
-  --accent: #a5eacb;
+  --bg: #0a1020;
+  --panel: #111e35;
+  --line: #2d405e;
+  --ink: #edf3ff;
+  --muted: #a4b5cf;
+  --accent: #9ac5ff;
+  --link: #9ac5ff;
+  --tinta-boton: #081a35;
+  --tono-a: #133b78;
+  --tono-b: #0d2243;
   font:
     16px/1.6 system-ui,
     -apple-system,
@@ -27,7 +33,11 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(ellipse at 85% 0%, #23345066, transparent 50%);
+  background: radial-gradient(
+    ellipse at 85% 0%,
+    color-mix(in srgb, var(--tono-a) 45%, transparent),
+    transparent 50%
+  );
 }
 a {
   color: inherit;
@@ -45,7 +55,7 @@ input {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--link);
 }
 .skip:not(:focus) {
   position: absolute;
@@ -88,12 +98,12 @@ input:focus-visible {
   place-items: center;
   width: 40px;
   height: 40px;
-  border: 1px solid #638477;
+  border: 1px solid var(--line);
   border-radius: 12px;
   font:
     600 15px ui-monospace,
     monospace;
-  color: var(--accent);
+  color: var(--link);
 }
 .identity small {
   display: block;
@@ -109,7 +119,7 @@ input:focus-visible {
   color: var(--muted);
 }
 .site-header a:hover {
-  color: var(--accent);
+  color: var(--link);
 }
 .intro {
   padding: 66px 0 40px;
@@ -117,7 +127,7 @@ input:focus-visible {
 }
 .eyebrow {
   margin: 0 0 18px;
-  color: var(--accent);
+  color: var(--link);
   font:
     11px/1.6 ui-monospace,
     monospace;
@@ -132,9 +142,9 @@ h1 {
   letter-spacing: -2.8px;
 }
 h1 span {
-  color: var(--accent);
+  color: var(--link);
 }
-.intro > p:last-child {
+.intro-texto > p:last-child {
   max-width: 560px;
   font-size: 16px;
   color: var(--muted);
@@ -163,9 +173,9 @@ h1 span {
   font-size: 12px;
 }
 .filters button[aria-pressed="true"] {
-  background: #1d2f2a;
-  border-color: #365549;
-  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg));
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  color: var(--link);
 }
 .filters button:hover {
   color: var(--ink);
@@ -227,7 +237,7 @@ h1 span {
     transform 0.2s;
 }
 .project:hover {
-  border-color: #537668;
+  border-color: var(--link);
   transform: translateY(-3px);
 }
 .project-art {
@@ -239,37 +249,38 @@ h1 span {
   position: relative;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
-  background:
-    radial-gradient(circle at 110% 0%, #4c7ac344, transparent 70%), #13213a;
+  background: linear-gradient(135deg, var(--tono-a), var(--tono-b));
 }
 .project-art::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(#e5f5ff25 1px, transparent 1px) 0 0/10px 10px;
+  background: radial-gradient(
+      color-mix(in srgb, var(--ink) 12%, transparent) 1px,
+      transparent 1px
+    )
+    0 0/10px 10px;
   mask-image: linear-gradient(to right, transparent, black);
 }
 .project-art.cv {
-  background:
-    radial-gradient(circle at 100% 0%, #3b8f7055, transparent 75%), #132a29;
+  background: linear-gradient(165deg, var(--tono-a), var(--tono-b));
 }
 .project-art.ru {
-  background:
-    radial-gradient(circle at 110% 0%, #976aba44, transparent 70%), #231c32;
+  background: linear-gradient(110deg, var(--tono-b), var(--tono-a));
 }
 .project-art > span {
   font:
     500 54px ui-monospace,
     monospace;
   letter-spacing: -5px;
-  color: #d0e2ff;
+  color: var(--ink);
   z-index: 1;
 }
 .project-art.cv > span {
-  color: #bcf2d9;
+  color: var(--ink);
 }
 .project-art.ru > span {
-  color: #e9ccff;
+  color: var(--ink);
 }
 .project-art svg {
   width: 86px;
@@ -283,7 +294,7 @@ h1 span {
   font:
     10px ui-monospace,
     monospace;
-  color: var(--accent);
+  color: var(--link);
   letter-spacing: 1px;
 }
 .project-info h3 {
@@ -318,10 +329,10 @@ h1 span {
 }
 .primary {
   background: var(--accent);
-  color: #0b241b;
+  color: var(--tinta-boton);
 }
 .primary:hover {
-  background: #c1f6df;
+  background: color-mix(in srgb, var(--accent) 85%, var(--ink));
 }
 .secondary {
   border: 1px solid var(--line);
@@ -334,7 +345,7 @@ h1 span {
   color: var(--muted);
 }
 .code-link:hover {
-  color: var(--accent);
+  color: var(--link);
 }
 .repo-list {
   display: grid;
@@ -378,7 +389,7 @@ h1 span {
   color: var(--muted);
 }
 .repo .actions > a {
-  color: var(--accent);
+  color: var(--link);
 }
 .empty {
   text-align: center;
@@ -402,7 +413,7 @@ h1 span {
   color: var(--muted);
 }
 .site-footer a:hover {
-  color: var(--accent);
+  color: var(--link);
 }
 .sr-only {
   position: absolute;
@@ -425,7 +436,7 @@ h1 span {
     500 clamp(100px, 22vw, 230px) / 1 ui-monospace,
     monospace;
   letter-spacing: -0.1em;
-  color: #45675b30;
+  color: color-mix(in srgb, var(--accent) 12%, transparent);
   position: absolute;
   right: 5%;
   top: 15%;
@@ -506,7 +517,7 @@ h1 span {
   h1 {
     letter-spacing: -1.8px;
   }
-  .intro > p:last-child {
+  .intro-texto > p:last-child {
     font-size: 14px;
   }
   .toolbar {

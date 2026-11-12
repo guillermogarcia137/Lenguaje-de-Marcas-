@@ -1,38 +1,83 @@
-const search = document.querySelector("#project-search");
-const buttons = [...document.querySelectorAll("[data-filter]")];
-const projects = [...document.querySelectorAll("[data-project]")];
-let category = "all";
-const normalize = (text) =>
-  text
+/*
+ * BÚSQUEDA Y FILTROS DEL MENÚ
+ *
+ * HTML contiene las tarjetas; CSS decide cómo se ven; este archivo decide
+ * cuáles se muestran. No descarga datos ni cambia los repositorios de GitHub.
+ * Los colores y las animaciones se controlan aparte, en temas.js y temas.css.
+ */
+
+// El DOM es la representación de la página que JavaScript puede consultar.
+// querySelector busca un elemento por su selector CSS: # significa «id».
+const campoBusqueda = document.querySelector("#project-search");
+
+// querySelectorAll devuelve varios elementos. Array.from los convierte en
+// una lista que podemos recorrer. data-filter y data-project están en el HTML.
+const botonesFiltro = Array.from(document.querySelectorAll("[data-filter]"));
+const tarjetasProyecto = Array.from(
+  document.querySelectorAll("[data-project]"),
+);
+
+// Este valor recuerda qué filtro ha elegido la persona. «all» muestra todos.
+let categoriaSeleccionada = "all";
+
+function prepararTexto(texto) {
+  // Quitamos las tildes y pasamos a minúsculas para que «codigo» encuentre
+  // también «Código». Esto no cambia el texto que se ve en la página.
+  return texto
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
-function filter() {
-  const query = normalize(search.value.trim());
-  let count = 0;
-  for (const project of projects) {
-    const show =
-      (category === "all" || project.dataset.kind === category) &&
-      normalize(project.textContent).includes(query);
-    project.hidden = !show;
-    if (show) count++;
-  }
-  document.querySelector("#project-count").textContent =
-    `${count} ${count === 1 ? "proyecto" : "proyectos"}`;
-  document.querySelector("#no-results").hidden = count > 0;
-  for (const group of ["featured", "repositories"])
-    document.querySelector("#" + group + "-section").hidden = ![
-      ...document.querySelectorAll("#" + group + " [data-project]"),
-    ].some((project) => !project.hidden);
 }
-buttons.forEach((button) =>
-  button.addEventListener("click", () => {
-    category = button.dataset.filter;
-    buttons.forEach((item) =>
-      item.setAttribute("aria-pressed", String(item === button)),
+
+function actualizarProyectos() {
+  const busqueda = prepararTexto(campoBusqueda.value.trim());
+  let cantidadVisible = 0;
+
+  for (const tarjeta of tarjetasProyecto) {
+    // dataset permite leer atributos data-* del HTML. Por ejemplo,
+    // data-kind="app" se consulta con tarjeta.dataset.kind.
+    const coincideCategoria =
+      categoriaSeleccionada === "all" ||
+      tarjeta.dataset.kind === categoriaSeleccionada;
+    const coincideTexto = prepararTexto(tarjeta.textContent).includes(busqueda);
+    const debeMostrarse = coincideCategoria && coincideTexto;
+
+    // hidden oculta la tarjeta, pero no la elimina ni cambia sus enlaces.
+    tarjeta.hidden = !debeMostrarse;
+    if (debeMostrarse) cantidadVisible += 1;
+  }
+
+  const palabraProyecto = cantidadVisible === 1 ? "proyecto" : "proyectos";
+  document.querySelector("#project-count").textContent =
+    `${cantidadVisible} ${palabraProyecto}`;
+  document.querySelector("#no-results").hidden = cantidadVisible > 0;
+
+  // Si un filtro vacía una sección entera, ocultamos también su título.
+  for (const nombreGrupo of ["featured", "repositories"]) {
+    const tarjetasGrupo = Array.from(
+      document.querySelectorAll(`#${nombreGrupo} [data-project]`),
     );
-    filter();
-  }),
-);
-search.addEventListener("input", filter);
-filter();
+    const tieneResultados = tarjetasGrupo.some((tarjeta) => !tarjeta.hidden);
+    document.querySelector(`#${nombreGrupo}-section`).hidden = !tieneResultados;
+  }
+}
+
+for (const boton of botonesFiltro) {
+  // Un evento es algo que ocurre en la página, como pulsar un botón.
+  // La función de abajo solo se ejecuta cuando llega ese clic.
+  boton.addEventListener("click", () => {
+    categoriaSeleccionada = boton.dataset.filter;
+
+    // aria-pressed informa del filtro activo también a los lectores de pantalla.
+    for (const otroBoton of botonesFiltro) {
+      otroBoton.setAttribute("aria-pressed", String(otroBoton === boton));
+    }
+    actualizarProyectos();
+  });
+}
+
+// input se dispara al escribir o borrar; no hace falta pulsar Intro.
+campoBusqueda.addEventListener("input", actualizarProyectos);
+
+// La primera llamada actualiza el contador al cargar la página.
+actualizarProyectos();
