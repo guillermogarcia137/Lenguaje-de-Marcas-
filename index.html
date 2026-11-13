@@ -7,23 +7,31 @@
   <meta name="theme-color" content="#173e76">
   <title>Guillermo García · Inicio</title>
   <!-- Recuperamos el fondo y los colores originales; index2 conserva style.css. -->
-  <link rel="stylesheet" href="./inicio.css?v=original-2">
+  <link rel="stylesheet" href="./inicio.css?v=escritorio-3">
+  <!-- defer espera a que el HTML esté disponible antes de conectar los eventos del menú. -->
+  <script src="./inicio.js" defer></script>
   <link rel="icon" type="image/png" href="./img/icons8-rebel-480.png">
 </head>
-<body>
+<body class="portada">
   <a class="salto" href="#contenido">Saltar al contenido</a>
   <div class="contenedor">
     <header class="cabecera">
-      <!-- Iconos originales con nombres accesibles para lectores de pantalla. -->
+      <!-- Iconos con la misma caja de 32 px; los enlaces conservan un área de pulsación de 44 px. -->
       <div class="iconos">
-        <a href="https://github.com/guillermogarcia137" aria-label="Mi perfil de GitHub"><img src="./img/github-logo_icon-icons.com_73546.png" alt="" width="64" height="64"></a>
-        <a href="https://app.notion.com/p/DAM-3d895e370a79805db475d55b8df41eeb?source=copy_link" aria-label="Mis apuntes de DAM en Notion"><img src="./img/notion_logo_icon_145025.png" alt="" width="64" height="64"></a>
-        <a href="https://www.whakoom.com/guillegp06" aria-label="Mi perfil de Whakoom"><img src="./img/whakoom-removebg-preview.png" alt="" width="64" height="64"></a>
+        <a href="https://github.com/guillermogarcia137" aria-label="Mi perfil de GitHub"><img src="./img/github-logo_icon-icons.com_73546.png" alt="" width="32" height="32"></a>
+        <a href="https://app.notion.com/p/DAM-3d895e370a79805db475d55b8df41eeb?source=copy_link" aria-label="Mis apuntes de DAM en Notion"><img src="./img/notion_logo_icon_145025.png" alt="" width="32" height="32"></a>
+        <a href="https://www.whakoom.com/guillegp06" aria-label="Mi perfil de Whakoom"><img src="./img/whakoom-removebg-preview.png" alt="" width="32" height="32"></a>
+        <!-- PINTEREST: cambia este href por la dirección de tu perfil cuando quieras. -->
+        <a href="https://www.pinterest.com/" aria-label="Pinterest"><img src="./img/pinterest.svg" alt="" width="32" height="32"></a>
       </div>
-      <!-- Enlaces normales: el menú sigue disponible sin cargar scripts. -->
-      <nav aria-label="Navegación principal">
-        <a href="./proyectos/">Proyectos</a><a href="#apuntes">Apuntes</a><a href="#pruebas">Pruebas</a><a href="#enlaces">Mis enlaces</a>
-      </nav>
+      <!-- details crea un desplegable nativo que también funciona sin JavaScript.
+           summary se abre con clic, Enter o Espacio, y anuncia su estado al lector de pantalla. -->
+      <details class="menu-navegacion" id="menu-navegacion">
+        <summary><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Menú</span></summary>
+        <nav aria-label="Navegación principal">
+          <a href="./proyectos/">Proyectos</a><a href="#apuntes">Apuntes</a><a href="#pruebas">Pruebas</a><a href="#enlaces">Mis enlaces</a>
+        </nav>
+      </details>
     </header>
     <main id="contenido" tabindex="-1">
       <div class="presentacion">
@@ -72,7 +80,7 @@
       </section>
       <section id="enlaces" aria-labelledby="titulo-enlaces">
         <h2 id="titulo-enlaces">Mis enlaces</h2>
-        <div class="acciones"><a href="https://github.com/guillermogarcia137">GitHub</a><a href="https://app.notion.com/p/DAM-3d895e370a79805db475d55b8df41eeb?source=copy_link">Notion · DAM</a><a href="https://www.whakoom.com/guillegp06">Whakoom</a></div>
+        <div class="acciones"><a href="https://github.com/guillermogarcia137">GitHub</a><a href="https://app.notion.com/p/DAM-3d895e370a79805db475d55b8df41eeb?source=copy_link">Notion · DAM</a><a href="https://www.whakoom.com/guillegp06">Whakoom</a><!-- Cambia también este href al añadir tu perfil. --><a href="https://www.pinterest.com/">Pinterest</a></div>
         <p><a href="https://github.com/guillermogarcia137?tab=overview">Ver mis contribuciones en GitHub</a></p>
       </section>
       <section aria-labelledby="titulo-busqueda">

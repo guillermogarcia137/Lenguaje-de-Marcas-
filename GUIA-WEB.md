@@ -10,3 +10,11 @@
 - `personal/`: demos y pruebas existentes, conservadas.
 
 Los comentarios del HTML y CSS explican las secciones nuevas. El formulario de búsqueda envía la consulta a Google; los enlaces del sitio abren en la misma pestaña.
+
+## Menú, escritorio y Pinterest
+
+- El menú hamburguesa usa `details` y `summary` en `index.html`. Funciona sin JavaScript. `inicio.js` añade cierre con Escape, clic fuera y selección de enlaces; Escape devuelve el foco al control.
+- La clase `portada` permite distribuir las secciones en dos columnas y las herramientas en cuatro en escritorio, sin cambiar la disposición de otras páginas. En móvil vuelve a una columna.
+- Los cuatro iconos de cabecera se muestran a 32 × 32 píxeles, dentro de enlaces de 44 × 44 para facilitar la pulsación.
+- Para poner tu perfil de Pinterest, busca `https://www.pinterest.com/` en `index.html` y cambia sus dos apariciones (icono y sección Mis enlaces).
+- `img/pinterest.svg` procede de [Simple Icons](https://github.com/simple-icons/simple-icons/blob/develop/icons/pinterest.svg), bajo [CC0 1.0](https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md). El SVG tiene un trazado negro y huecos transparentes, sin capa blanca. Las marcas pertenecen a sus titulares.
