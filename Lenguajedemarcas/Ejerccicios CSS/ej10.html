@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio 10 - Combinación de selectores</title>
+
+  <!--
+    EJERCICIO 10. Punto de partida (versión sin estilos).
+    NO SE PUEDE MODIFICAR NADA DENTRO DE <body>.
+    Fíjate en los atributos class, id y lang: son las pistas para escribir los selectores.
+  -->
+  <style>
+    /* Apartado a) */
+    h1 {
+      font-family: Arial;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Panel de avisos</h1>
+
+  <div class="aviso">
+    <p>Aviso general del sistema. Este párrafo no lleva ningún span dentro.</p>
+    <span class="especial">Texto especial del primer aviso</span>
+    <span>Texto normal del primer aviso</span>
+  </div>
+
+  <div>
+    <p>Este div no tiene la clase aviso.</p>
+    <span class="especial">Texto especial fuera del aviso</span>
+  </div>
+
+  <ul id="menuPrincipal">
+    <li><a href="#" class="inicio">Inicio</a></li>
+    <li class="destacado"><a href="#" class="inicio">Cursos</a></li>
+    <li class="destacado"><a href="#">Contacto</a></li>
+  </ul>
+
+  <p lang="en-US" class="with-currency">Precio del curso</p>
+  <p lang="fr" class="with-currency">Precio del curso en Francia</p>
+
+</body>
+</html>

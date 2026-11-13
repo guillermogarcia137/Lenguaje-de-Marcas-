@@ -1,0 +1,5 @@
+Copia el CONTENIDO de esta carpeta junto a tu index.html (junto a la carpeta img/).
+Archivos: java.html/css/js e interes.html/css/js.
+Enlaces para tu index.html:
+  <a href="./java.html">Java</a>
+  <a href="./interes.html">Webs de interés</a>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio 4 - Selectores de etiqueta</title>
+
+  <!--
+    EJERCICIO 4. Fichero resuelto.
+    Fíjate en cómo se puede AGRUPAR: p, h2 { ... } aplica las mismas
+    declaraciones a las dos etiquetas sin repetir el bloque.
+  -->
+  <style>
+    /* --- Apartado a): uno de los dos, hecho con DOS reglas separadas --- */
+    p {
+      color: red;
+      font-family: Arial;
+    }
+
+    h2 {
+      color: red;
+      font-family: Arial;
+    }
+
+    /* --- Apartado b): lo mismo AGRUPADO en una sola regla ---
+    p, h2 {
+      color: red;
+      font-family: Arial;
+    }
+    ------------------------------------------------ */
+
+    /* Apartado c) */
+    h1 {
+      color: darkblue;
+      font-size: xx-large;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Titular de la página</h1>
+
+  <h2>Primer apartado</h2>
+  <p>Un párrafo de texto con formato aplicado por el selector de etiqueta p.</p>
+  <p>Otro párrafo, que recibe exactamente el mismo formato sin repetir nada.</p>
+
+  <h2>Segundo apartado</h2>
+  <p>Aquí también se ve que el formato se aplica de forma automática.</p>
+  <ul>
+    <li>Esta lista NO está seleccionada, así que se ve con el formato del navegador.</li>
+    <li>Por eso aparece en negro y con el tipo de letra por defecto.</li>
+  </ul>
+
+  <h2>Tercer apartado</h2>
+  <p>Cambia el color de h2 y comprueba que cambian los tres apartados a la vez.</p>
+
+</body>
+</html>

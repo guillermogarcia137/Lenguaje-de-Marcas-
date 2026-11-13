@@ -1,0 +1,47 @@
+/* PORTADA: estilo independiente para conservar la apariencia de index2.html.
+   Las variables reúnen los colores; el contenido funciona sin JavaScript. */
+:root { color-scheme: dark; --fondo:#091322; --panel:#122239; --borde:#344c69; --texto:#f2f6ff; --secundario:#b7c8df; --azul:#a8d1ff; font:100%/1.65 system-ui, sans-serif; }
+* { box-sizing:border-box; }
+html { scroll-padding-top:1rem; }
+body { margin:0; background:var(--fondo); color:var(--texto); }
+a { color:var(--azul); text-underline-offset:.25em; }
+a:hover { color:white; }
+:focus-visible { outline:3px solid #ffd580; outline-offset:5px; }
+/* El salto al contenido aparece al navegar con Tab, antes de los menús. */
+.salto { position:absolute; top:-10rem; left:1rem; z-index:10; background:var(--texto); color:var(--fondo); padding:.75rem; }
+.salto:focus { top:1rem; }
+.contenedor { width:min(1140px, 100% - 3rem); margin-inline:auto; }
+.cabecera { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; padding-block:1.5rem; border-bottom:1px solid var(--borde); }
+.identidad { display:flex; align-items:center; gap:.8rem; font-weight:700; color:var(--texto); text-decoration:none; }
+.marca { display:grid; place-items:center; width:2.8rem; height:2.8rem; border:2px solid var(--azul); color:var(--azul); font-family:monospace; }
+nav, .acciones { display:flex; flex-wrap:wrap; gap:.65rem 1.5rem; }
+nav a, .acciones a, footer a { display:inline-flex; align-items:center; min-height:44px; }
+.presentacion { padding-block:3.5rem 2rem; max-width:780px; }
+.etiqueta { color:var(--azul); font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; }
+h1 { font-size:clamp(2rem, 6vw, 3.8rem); line-height:1.15; margin:.6rem 0 1rem; }
+h2 { font-size:1.5rem; line-height:1.3; margin:0; }
+h3 { line-height:1.4; font-size:1.15rem; margin:0 0 .5rem; }
+p { margin:.5rem 0 1rem; }
+.presentacion p, .descripcion, .tarjeta p, footer { color:var(--secundario); }
+.boton { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:.6rem 1rem; border:1px solid var(--borde); border-radius:.5rem; text-decoration:none; font-weight:600; }
+.principal { background:var(--azul); color:#091322; border-color:var(--azul); }
+.principal:hover { background:#d4e8ff; color:#091322; }
+section { padding-block:1.5rem; }
+/* auto-fit evita posiciones absolutas y permite ampliar texto sin solapar enlaces. */
+.tarjetas { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:1rem; padding:0; list-style:none; }
+.tarjeta { padding:1.4rem; background:var(--panel); border:1px solid var(--borde); border-radius:.75rem; }
+.tarjeta h3 a { color:var(--texto); }
+.tarjeta p { margin-bottom:0; }
+details { border:1px solid var(--borde); border-radius:.6rem; padding:1rem 1.25rem; margin-top:1rem; }
+summary { cursor:pointer; min-height:44px; font-weight:600; color:var(--azul); }
+.lista-pruebas { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:.5rem 2rem; padding-left:1.2rem; }
+.lista-pruebas a { display:inline-flex; align-items:center; min-height:44px; }
+label { display:block; font-weight:600; margin-bottom:.5rem; }
+.busqueda { display:flex; gap:.65rem; flex-wrap:wrap; }
+input, button { font:inherit; border-radius:.5rem; padding:.75rem 1rem; min-height:48px; }
+input { flex:1 1 220px; min-width:0; background:var(--panel); color:var(--texto); border:1px solid var(--borde); }
+button { cursor:pointer; border:0; background:var(--azul); color:#091322; font-weight:600; }
+footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; border-top:1px solid var(--borde); margin-top:2rem; padding-block:1.5rem; }
+/* Sin animaciones decorativas: la portada respeta movimiento reducido de forma nativa. */
+@media (max-width:480px) { .contenedor { width:calc(100% - 2rem); } .presentacion { padding-top:2rem; } nav { gap:.5rem 1rem; } }
+@media (forced-colors:active) { .tarjeta, .boton, .marca { border:1px solid CanvasText; } }

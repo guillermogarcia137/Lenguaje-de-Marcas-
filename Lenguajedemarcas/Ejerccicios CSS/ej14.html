@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio 14 - Formulario y pseudoclases de validación</title>
+
+  <!--
+    EJERCICIO 14. Punto de partida.
+    NO SE PUEDE MODIFICAR NADA DENTRO DE <body>.
+    Prueba a escribir mal el correo (sin arroba) y mira cómo cambia el campo.
+  -->
+  <style>
+    /* Apartado a) */
+    body {
+      font-family: Arial;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contacto</h1>
+
+  <p>Rellena el siguiente formulario y pulsa Enviar:</p>
+
+  <form method="get" action="">
+    Nombre:<input type="text" pattern="[A-Z]\w+" required><br><br>
+    Apellidos:<input type="text"><br><br>
+    Correo electrónico:<input type="email"><br><br>
+    <input type="submit" value="Enviar">
+    <input type="submit" value="Cancelar">
+  </form>
+
+</body>
+</html>

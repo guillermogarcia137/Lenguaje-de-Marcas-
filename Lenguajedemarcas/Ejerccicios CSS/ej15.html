@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Ejercicio 15 - Repaso final (página completa)</title>
+
+  <!--
+    EJERCICIO 15. Punto de partida (versión sin estilos).
+    NO SE PUEDE MODIFICAR NADA DENTRO DE <body>, salvo los colores del
+    gradiente del menú, que se indican en el enunciado.
+    Todos los selectores necesarios están en los apuntes del tema.
+  -->
+  <style>
+    /* Apartado a) */
+    body {
+      font-family: Arial;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Utilización de lenguajes de marcas en entornos web</h1>
+
+  <nav id="menu">
+    <ul>
+      <li><a href="#" class="inicio">Inicio</a></li>
+      <li><a href="#" class="inicio">Libros de programación</a></li>
+      <li><a href="#" class="inicio">Cursos de programación</a></li>
+      <li><a href="#" class="inicio">Humor informático</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <h2>Aprender a programar</h2>
+
+    <p>Aprender a programar es un objetivo que se plantea mucha gente y que no todos alcanzan.</p>
+
+    <p>
+      Hay que tener claro que aprender programación no es tarea de un día ni de una semana:
+      requiere al menos varios meses y, si hablamos de programación a nivel profesional,
+      varios años.
+    </p>
+
+    <p>
+      Puedes seguir uno de nuestros cursos entre los varios disponibles. Cuando haya que
+      utilizar un editor de textos recomendamos el uso de uno potente y sencillo como
+      Notepad++, aunque son válidas otras alternativas.
+    </p>
+
+    <h2>Humor informático</h2>
+
+    <img src="img/grafico.png" alt="Gráfico del teorema fundamental de la programación"
+         title="Teorema fundamental de la programación">
+
+    <p>
+      Un programador es aquel que arregla un problema que no sabías que tenías, de una manera
+      que no entiendes.
+    </p>
+
+    <h2>Formulario de contacto</h2>
+
+    <p>Si quieres contactar con nosotros envíanos este formulario relleno:</p>
+
+    <form method="get" action="">
+      <label for="nombre" class="obligatorio">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required><br><br>
+
+      <label for="apellidos" class="obligatorio">Apellidos:</label>
+      <input type="text" id="apellidos" name="apellidos" required><br><br>
+
+      <label for="direccion">Dirección:</label>
+      <input type="text" id="direccion" name="direccion"><br><br>
+
+      <label for="correo">Correo electrónico:</label>
+      <input type="email" id="correo" name="correo"><br><br>
+
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="5" cols="40"></textarea><br><br>
+
+      <input type="submit" value="Enviar">
+      <input type="submit" value="Cancelar">
+    </form>
+
+  </main>
+
+  <footer>
+    <p>Datos footer</p>
+  </footer>
+
+</body>
+</html>

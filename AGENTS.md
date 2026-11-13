@@ -12,3 +12,4 @@ Estas preferencias son generales. No se limitan al menú ni a una entrega concre
 - En este repositorio, conservar el `index.html` principal salvo petición explícita de Guillermo. El menú está en `/proyectos/`.
 
 - Si una tarea se estima en más de unos 3 minutos, empezar con una estimación visible y un nivel de esfuerzo recomendado (bajo, medio, alto o superior según el caso), explicando brevemente el motivo. Actualizar el tiempo restante si cambia el alcance o aparecen incidencias. Las estimaciones son aproximaciones, no horas garantizadas.
+- Presentar siempre el tiempo estimado y el nivel de trabajo en líneas separadas, ambos en negrita, en tareas de este tipo.

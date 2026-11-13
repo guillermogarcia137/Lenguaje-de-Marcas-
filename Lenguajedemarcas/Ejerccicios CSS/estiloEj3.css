@@ -1,0 +1,38 @@
+/* =========================================================
+   EJERCICIO 3 - Hoja de estilos externa
+   Fichero: estiloEj3.css
+   Este fichero NO lleva etiquetas HTML, solo reglas CSS.
+   ========================================================= */
+
+body {
+  font-family: Verdana, Arial, sans-serif;
+  background-color: #eaf2f8;
+  margin: 30px;
+}
+
+h1 {
+  color: #154360;
+  font-size: xx-large;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: #1f618d;
+  font-size: large;
+  border-left: 6px solid #1f618d;
+  padding-left: 10px;
+}
+
+p {
+  color: #2c3e50;
+  font-size: medium;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+ul {
+  color: #7b241c;
+  font-size: medium;
+  line-height: 1.8;
+}

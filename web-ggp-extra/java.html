@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java | Web GGP</title>
+    <link rel="stylesheet" href="./java.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js" defer></script>
+    <script src="./java.js" defer></script>
+</head>
+<body>
+    <header class="cabecera">
+        <a class="volver" href="./../index.html">Volver al inicio</a>
+        <h1>Java: cómo voy</h1>
+        <p>Los programas salen directamente de mi repositorio de GitHub. Pulsa uno para ver el código y ejecutarlo.</p>
+    </header>
+
+    <main class="contenido">
+        <aside class="lateral">
+            <section class="panel">
+                <h2>Programas</h2>
+                <div id="arbol">Cargando desde GitHub…</div>
+            </section>
+            <section class="panel">
+                <h2>Últimos commits</h2>
+                <ul id="commits" class="commits"></ul>
+            </section>
+        </aside>
+
+        <section class="visor panel" aria-live="polite">
+            <div class="barra">
+                <span id="nombre">Elige un programa de la lista</span>
+                <div class="acciones">
+                    <a id="enlaceGithub" href="#" target="_blank" hidden>Ver en GitHub</a>
+                    <button id="btnCopiar" type="button" hidden>Copiar</button>
+                    <button id="btnEjecutar" type="button" hidden>Ejecutar</button>
+                </div>
+            </div>
+            <pre class="codigo"><code id="codigo" class="language-java"></code></pre>
+
+            <label class="entrada" for="stdin">Entrada del programa (para Scanner, una línea por cada valor)</label>
+            <textarea id="stdin" rows="2" placeholder="Déjalo vacío si el programa no pide datos"></textarea>
+
+            <h2 class="titulo-salida">Salida</h2>
+            <pre id="salida" class="salida">Aquí aparecerá el resultado.</pre>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,41 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web GGP</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" type="image/png" href="./img/icons8-rebel-480.png"><!-- icono pagina web -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Web de Guillermo García: proyectos, apuntes de HTML y CSS, herramientas de Java y pruebas de diseño web.">
+  <meta name="theme-color" content="#091322">
+  <title>Guillermo García · Inicio</title>
+  <!-- La portada tiene sus propios estilos; index2 conserva style.css. -->
+  <link rel="stylesheet" href="./inicio.css">
+  <link rel="icon" type="image/png" href="./img/icons8-rebel-480.png">
 </head>
-<body>  
-    <div class="iconos">
-    <a href="https://github.com/guillermogarcia137" target="_blank">
-        <img src="./img/github-logo_icon-icons.com_73546.png" alt="IconoGitHub" title="Github">
-    </a>
-    <a href="https://app.notion.com/p/DAM-3d895e370a79805db475d55b8df41eeb?source=copy_link" target="_blank">
-        <img src="./img/notion_logo_icon_145025.png" alt="IconoNotion" title="Notion">
-    </a>
-    <a href="https://www.whakoom.com/guillegp06" target="_blank">
-        <img src="./img/whakoom-removebg-preview.png" alt="whakoom" title="whakoom">
-    </a>
-</div>
-    <div class="titulo">
-        <p>Hola mundo</p>
-    </div>
-    <div class="enlaces">   
-        <a href="./mclibre-htmlcss-master/index.html" target="_blank">Web apuntes HTML</a> 
-        <a href="./Lenguajedemarcas/indexLenguajeDeMarcas.html">Lenguaje de marcas</a>
-        <a href="./personal/indexDePrueba.html">Pruebas 1(DEMO)</a>  
-        <a href="./personal/indexPRUEBA1.html">Pruebas 2(DEMO)</a>
-        <form action="https://www.google.com/search" target="_blank" method="get">
-            <input type="search" name="q" placeholder="¿Qué quieres buscar?" required>
-            <button type="submit" >Buscar</button>
-        </form>
-        <p>Contribuciones de GitHub</p>
-        <img src="https://ghchart.rshah.org/guillermogarcia137" alt="Contribuciones">
-        
-    </div>
-        
-</a>  
+<body>
+  <a class="salto" href="#contenido">Saltar al contenido</a>
+  <div class="contenedor">
+    <header class="cabecera">
+      <a class="identidad" href="./" aria-label="Guillermo García, inicio"><span class="marca" aria-hidden="true">G/</span> Guillermo García</a>
+      <!-- Enlaces normales: el menú sigue disponible sin cargar scripts. -->
+      <nav aria-label="Navegación principal">
+        <a href="./proyectos/">Proyectos</a><a href="#apuntes">Apuntes</a><a href="#pruebas">Pruebas</a><a href="#enlaces">Mis enlaces</a>
+      </nav>
+    </header>
+    <main id="contenido" tabindex="-1">
+      <div class="presentacion">
+        <span class="etiqueta">Web GGP</span>
+        <h1>Proyectos, apuntes y pruebas</h1>
+        <p>Accede a mis aplicaciones, ejercicios de clase y herramientas desde un mismo sitio.</p>
+        <div class="acciones"><a class="boton principal" href="./proyectos/">Ver todos los proyectos</a><a class="boton" href="./Lenguajedemarcas/indexLenguajeDeMarcas.html">Lenguaje de marcas</a></div>
+      </div>
+      <section aria-labelledby="titulo-herramientas">
+        <h2 id="titulo-herramientas">Proyectos y herramientas</h2>
+        <p class="descripcion">Aplicaciones y recursos que puedes abrir directamente.</p>
+        <ul class="tarjetas">
+          <li class="tarjeta"><h3><a href="./proyectos/">Catálogo de proyectos</a></h3><p>Aplicaciones, repositorios y aprendizaje, con buscador, filtros y temas.</p></li>
+          <li class="tarjeta"><h3><a href="./proyectos/Focusrite/interfaz.html">Focusrite · Interfaz de audio</a></h3><p>Panel de audio para comprobar entradas, dispositivos y niveles.</p></li>
+          <li class="tarjeta"><h3><a href="./web-ggp-extra/java.html">Java</a></h3><p>Ejemplos de código y recursos para practicar Java.</p></li>
+          <li class="tarjeta"><h3><a href="./web-ggp-extra/interes.html">Webs de interés</a></h3><p>Directorio de enlaces y recursos útiles.</p></li>
+        </ul>
+      </section>
+      <section id="apuntes" aria-labelledby="titulo-apuntes">
+        <h2 id="titulo-apuntes">Apuntes y ejercicios</h2>
+        <ul class="tarjetas">
+          <li class="tarjeta"><h3><a href="./Lenguajedemarcas/indexLenguajeDeMarcas.html">Lenguaje de marcas</a></h3><p>Enlaces, tablas, formularios y ejercicios de CSS.</p></li>
+          <li class="tarjeta"><h3><a href="./mclibre-htmlcss-master/index.html">Apuntes de HTML y CSS</a></h3><p>Manual de mclibre con explicaciones, ejemplos y ejercicios.</p></li>
+          <li class="tarjeta"><h3><a href="./Lenguajedemarcas/LM_UT3_tabla_resumen_css.pdf">Resumen de CSS (PDF)</a></h3><p>Tabla de consulta de propiedades y estilos.</p></li>
+        </ul>
+      </section>
+      <section id="pruebas" aria-labelledby="titulo-pruebas">
+        <h2 id="titulo-pruebas">Pruebas de diseño web</h2>
+        <ul class="tarjetas">
+          <li class="tarjeta"><h3><a href="./personal/indexDePrueba.html">Pruebas 1</a></h3><p>Primera demo de la web personal.</p></li>
+          <li class="tarjeta"><h3><a href="./personal/indexPRUEBA1.html">Pruebas 2</a></h3><p>Segunda demo de navegación y estilos.</p></li>
+          <li class="tarjeta"><h3><a href="./personal/indexPersonal.html">Todas las pruebas</a></h3><p>Efectos, menús, formularios, galerías y otros ejemplos.</p></li>
+        </ul>
+        <!-- details ofrece un desplegable accesible con teclado sin JavaScript. -->
+        <details><summary>Acceso directo a los ejemplos</summary><ul class="lista-pruebas">
+          <li><a href="./personal/prueba1.html">Efecto cristal</a></li><li><a href="./personal/prueba2.html">Efecto al pasar el ratón</a></li>
+          <li><a href="./personal/prueba3.html">Neón</a></li><li><a href="./personal/prueba4.html">Modo claro y oscuro</a></li>
+          <li><a href="./personal/prueba5.html">Menú adaptable</a></li><li><a href="./personal/prueba6.html">Preguntas frecuentes</a></li>
+          <li><a href="./personal/prueba7.html">Precios</a></li><li><a href="./personal/prueba8.html">Formulario de registro</a></li>
+          <li><a href="./personal/prueba9.html">Pestañas</a></li><li><a href="./personal/landing-hondo.html">Página de presentación</a></li>
+          <li><a href="./personal/bloques-de-codigo.html">Bloques de código</a></li><li><a href="./personal/1-link-en-bio.html">Enlaces de perfil</a></li>
+          <li><a href="./personal/2-galeria-enfoque.html">Galería</a></li><li><a href="./personal/3-linea-del-tiempo.html">Línea del tiempo</a></li>
+          <li><a href="./personal/4-modal-newsletter.html">Boletín</a></li><li><a href="./personal/5-articulo-lectura.html">Artículo</a></li>
+          <li><a href="./personal/Java/java.html">Primera demo de Java</a></li>
+        </ul></details>
+      </section>
+      <section id="enlaces" aria-labelledby="titulo-enlaces">
+        <h2 id="titulo-enlaces">Mis enlaces</h2>
+        <div class="acciones"><a href="https://github.com/guillermogarcia137">GitHub</a><a href="https://app.notion.com/p/DAM-3d895e370a79805db475d55b8df41eeb?source=copy_link">Notion · DAM</a><a href="https://www.whakoom.com/guillegp06">Whakoom</a></div>
+        <p><a href="https://github.com/guillermogarcia137?tab=overview">Ver mis contribuciones en GitHub</a></p>
+      </section>
+      <section aria-labelledby="titulo-busqueda">
+        <h2 id="titulo-busqueda">Buscar en Internet</h2>
+        <!-- La etiqueta permanece visible; el placeholder es solo una ayuda. -->
+        <form action="https://www.google.com/search" method="get"><label for="consulta">Búsqueda en Google</label><div class="busqueda"><input id="consulta" type="search" name="q" placeholder="Escribe tu búsqueda" required><button type="submit">Buscar en Google</button></div></form>
+      </section>
+    </main>
+    <footer><span>Guillermo García · Web GGP</span><a href="./index2.html">Ver el índice anterior</a><a href="#contenido">Volver arriba</a></footer>
+  </div>
 </body>
 </html>

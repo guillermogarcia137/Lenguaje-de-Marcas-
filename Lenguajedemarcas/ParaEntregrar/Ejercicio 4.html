@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4 </title>
+</head>
+
+<body>
+    <h1>Panel de Incidencias del Centro</h1>
+    <form action="guardar_incidencia.php" method="post" enctype="application/x-www-form-urlencoded">
+        <fieldset>
+            <legend>Datos de la Incidencia</legend>
+                <p>Código: <input type="text" name="Nombre" size="20" required></p>
+                <p>Tipo de indicencia:
+
+                    <optgroup>
+                        Sele
+                        <option value=""></option>
+                    </optgroup>
+
+
+                    <option value="1"></option>
+                    <option value="2">Software</option>
+
+                </p>
+                <p>
+                    <label>Captura del error: </label>
+                    <input type="file" accept=".png , .jpg">
+                </p>
+
+        </fieldset>
+        <fieldset>
+        <legend>Datos del Técnico</legend>
+            <p>Nombre: <input type="text" name="codigo" size="20" required></p>
+            <p>Email: <input type="email"name="correo" size="20"></p>
+        </fieldset>
+        <input type="reset" value="Borrar datos">
+        <input type="submit" value="Enviar indicencia">
+
+    </form>
+    <hr><!-- linea -->
+    <h2>Indicendias abiertas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Aula</th>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Equipos afectados</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">Aula 1</td>
+                <td>INC-101</td>
+                <td>Monitor sin señal</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>INC-102</td>
+                <td>Teclado sin respuesta</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Aula 2</td>
+                <td>INC-201</td>
+                <td>Fallo de conexión WiFi</td>
+                <td>8</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total de equipos afectados</td>
+                <td>14</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
