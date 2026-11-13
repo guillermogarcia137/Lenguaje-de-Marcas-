@@ -13,6 +13,8 @@ Los comentarios del HTML y CSS explican las secciones nuevas. El formulario de b
 
 ## Menú, escritorio y Pinterest
 
+- La sección `#proyectos` de `index.html` muestra PanelVerse, ConvertVerse, Ruleta y Focusrite con botones directos a cada aplicación. PanelVerse y ConvertVerse se destacan primero como proyectos en desarrollo. El enlace Proyectos del menú salta a esta sección; el catálogo completo queda como acceso secundario. Java está en Apuntes y Webs de interés en Mis enlaces.
+
 - El menú hamburguesa usa `details` y `summary` en `index.html`. Funciona sin JavaScript. `inicio.js` añade cierre con Escape, clic fuera y selección de enlaces; Escape devuelve el foco al control.
 - La clase `portada` permite distribuir las secciones en dos columnas y las herramientas en cuatro en escritorio, sin cambiar la disposición de otras páginas. En móvil vuelve a una columna.
 - Los cuatro iconos de cabecera se muestran a 32 × 32 píxeles, dentro de enlaces de 44 × 44 para facilitar la pulsación.
