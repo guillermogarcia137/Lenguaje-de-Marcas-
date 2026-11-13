@@ -1,47 +1,55 @@
-/* PORTADA: estilo independiente para conservar la apariencia de index2.html.
-   Las variables reúnen los colores; el contenido funciona sin JavaScript. */
-:root { color-scheme: dark; --fondo:#091322; --panel:#122239; --borde:#344c69; --texto:#f2f6ff; --secundario:#b7c8df; --azul:#a8d1ff; font:100%/1.65 system-ui, sans-serif; }
+/* Identidad original: fondo2.avif, panel marino y enlaces azul vivo.
+   El flujo normal permite ampliar texto sin solapar el título y los enlaces. */
+:root { color-scheme:dark; --fondo:#173e76; --panel:#0b1f3a; --azul:#4da6ff; --resaltado:#1769aa; --texto:white; font:110%/1.55 Arial,sans-serif; }
 * { box-sizing:border-box; }
 html { scroll-padding-top:1rem; }
-body { margin:0; background:var(--fondo); color:var(--texto); }
-a { color:var(--azul); text-underline-offset:.25em; }
+body { margin:0; min-height:100vh; color:var(--texto); background:var(--fondo); }
+/* La capa fija conserva la imagen original completa al desplazarse.
+   No añadimos filtros ni degradados que alteren sus colores. */
+body::before { content:""; position:fixed; inset:0; z-index:-1; background:var(--fondo) url("./img/fondo2.avif") center / cover no-repeat; }
+a { color:var(--azul); text-underline-offset:.22em; }
 a:hover { color:white; }
-:focus-visible { outline:3px solid #ffd580; outline-offset:5px; }
-/* El salto al contenido aparece al navegar con Tab, antes de los menús. */
-.salto { position:absolute; top:-10rem; left:1rem; z-index:10; background:var(--texto); color:var(--fondo); padding:.75rem; }
+:focus-visible { outline:3px solid white; outline-offset:4px; }
+.salto { position:absolute; top:-10rem; left:1rem; z-index:10; padding:.75rem; background:var(--panel); }
 .salto:focus { top:1rem; }
-.contenedor { width:min(1140px, 100% - 3rem); margin-inline:auto; }
-.cabecera { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; padding-block:1.5rem; border-bottom:1px solid var(--borde); }
-.identidad { display:flex; align-items:center; gap:.8rem; font-weight:700; color:var(--texto); text-decoration:none; }
-.marca { display:grid; place-items:center; width:2.8rem; height:2.8rem; border:2px solid var(--azul); color:var(--azul); font-family:monospace; }
-nav, .acciones { display:flex; flex-wrap:wrap; gap:.65rem 1.5rem; }
-nav a, .acciones a, footer a { display:inline-flex; align-items:center; min-height:44px; }
-.presentacion { padding-block:3.5rem 2rem; max-width:780px; }
-.etiqueta { color:var(--azul); font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; }
-h1 { font-size:clamp(2rem, 6vw, 3.8rem); line-height:1.15; margin:.6rem 0 1rem; }
-h2 { font-size:1.5rem; line-height:1.3; margin:0; }
-h3 { line-height:1.4; font-size:1.15rem; margin:0 0 .5rem; }
+.contenedor { width:min(1100px,100% - 2rem); margin:auto; }
+/* Los tres iconos originales permanecen en el flujo para no tapar el menú móvil. */
+.cabecera { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; padding-block:1.25rem; }
+.iconos { display:flex; align-items:center; gap:1rem; }
+.iconos a { display:grid; place-items:center; min-width:48px; min-height:48px; }
+.iconos img { display:block; width:clamp(44px,5vw,64px); height:64px; object-fit:contain; }
+nav { display:flex; flex-wrap:wrap; justify-content:center; gap:.25rem; padding:.35rem; background:var(--panel); border-radius:10px; }
+nav a,.acciones a,footer a { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:.4rem .8rem; border-radius:6px; font-weight:bold; }
+nav a:hover,.acciones a:hover,.lista-pruebas a:hover,.tarjeta:hover { background:var(--resaltado); }
+main { width:min(780px,100%); margin:auto; }
+.presentacion { text-align:center; padding:1.25rem 0 1.5rem; }
+.etiqueta { color:white; font-size:.9rem; text-shadow:0 2px 4px #0b1f3a; }
+h1 { color:var(--azul); font-size:clamp(2.1rem,6vw,3.5rem); line-height:1.2; margin:.3rem 0 .75rem; text-align:center; text-shadow:0 2px 5px #0b1f3a; }
+h2 { color:var(--azul); font-size:1.35rem; line-height:1.4; margin:0; text-align:center; }
+h3 { font-size:1.1rem; margin:0; line-height:1.4; }
 p { margin:.5rem 0 1rem; }
-.presentacion p, .descripcion, .tarjeta p, footer { color:var(--secundario); }
-.boton { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:.6rem 1rem; border:1px solid var(--borde); border-radius:.5rem; text-decoration:none; font-weight:600; }
-.principal { background:var(--azul); color:#091322; border-color:var(--azul); }
-.principal:hover { background:#d4e8ff; color:#091322; }
-section { padding-block:1.5rem; }
-/* auto-fit evita posiciones absolutas y permite ampliar texto sin solapar enlaces. */
-.tarjetas { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:1rem; padding:0; list-style:none; }
-.tarjeta { padding:1.4rem; background:var(--panel); border:1px solid var(--borde); border-radius:.75rem; }
-.tarjeta h3 a { color:var(--texto); }
-.tarjeta p { margin-bottom:0; }
-details { border:1px solid var(--borde); border-radius:.6rem; padding:1rem 1.25rem; margin-top:1rem; }
-summary { cursor:pointer; min-height:44px; font-weight:600; color:var(--azul); }
-.lista-pruebas { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:.5rem 2rem; padding-left:1.2rem; }
-.lista-pruebas a { display:inline-flex; align-items:center; min-height:44px; }
-label { display:block; font-weight:600; margin-bottom:.5rem; }
-.busqueda { display:flex; gap:.65rem; flex-wrap:wrap; }
-input, button { font:inherit; border-radius:.5rem; padding:.75rem 1rem; min-height:48px; }
-input { flex:1 1 220px; min-width:0; background:var(--panel); color:var(--texto); border:1px solid var(--borde); }
-button { cursor:pointer; border:0; background:var(--azul); color:#091322; font-weight:600; }
-footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; border-top:1px solid var(--borde); margin-top:2rem; padding-block:1.5rem; }
-/* Sin animaciones decorativas: la portada respeta movimiento reducido de forma nativa. */
-@media (max-width:480px) { .contenedor { width:calc(100% - 2rem); } .presentacion { padding-top:2rem; } nav { gap:.5rem 1rem; } }
-@media (forced-colors:active) { .tarjeta, .boton, .marca { border:1px solid CanvasText; } }
+.presentacion p { text-shadow:0 2px 4px #0b1f3a; }
+.acciones { display:flex; justify-content:center; flex-wrap:wrap; gap:.5rem; }
+.boton { background:var(--panel); text-decoration:none; }
+/* Paneles sólidos como el menú original: el texto mantiene el contraste
+   aunque el fondo tenga zonas claras. */
+section { background:var(--panel); padding:1.25rem; margin-bottom:1rem; border-radius:10px; text-align:center; }
+.descripcion,.tarjeta p { font-size:.9rem; }
+.tarjetas { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; padding:0; margin:.75rem 0 0; list-style:none; }
+.tarjeta { padding:.75rem; border-radius:6px; }
+.tarjeta h3 a { display:inline-flex; align-items:center; justify-content:center; min-height:44px; }
+.tarjeta p { margin:.2rem 0 0; }
+details { margin-top:1rem; border-top:1px solid var(--azul); padding-top:.65rem; }
+summary { min-height:44px; color:var(--azul); cursor:pointer; font-weight:bold; }
+.lista-pruebas { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.4rem 1rem; padding:0; list-style:none; }
+.lista-pruebas a { display:inline-flex; justify-content:center; align-items:center; min-height:44px; padding:.35rem; border-radius:6px; }
+label { display:block; margin:1rem 0 .5rem; }
+.busqueda { display:flex; flex-wrap:wrap; gap:.5rem; }
+input,button { font:inherit; padding:.6rem .8rem; min-height:44px; border-radius:6px; }
+input { flex:1 1 200px; min-width:0; background:white; color:#0b1f3a; border:2px solid white; }
+button { cursor:pointer; font-weight:bold; background:var(--azul); color:var(--panel); border:2px solid var(--azul); }
+footer { width:min(780px,100%); margin:1rem auto 2rem; padding:1rem; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.5rem; background:var(--panel); border-radius:10px; text-align:center; }
+footer span { width:100%; }
+/* Sin efectos en movimiento; en pantallas estrechas los enlaces pasan a una columna. */
+@media (max-width:600px) { .cabecera { justify-content:center; } .tarjetas,.lista-pruebas { grid-template-columns:1fr; } section { padding:1rem; } .iconos img { height:48px; } }
+@media (forced-colors:active) { section,nav,footer,.boton { border:1px solid CanvasText; } }

@@ -13,3 +13,4 @@ Estas preferencias son generales. No se limitan al menú ni a una entrega concre
 
 - Si una tarea se estima en más de unos 3 minutos, empezar con una estimación visible y un nivel de esfuerzo recomendado (bajo, medio, alto o superior según el caso), explicando brevemente el motivo. Actualizar el tiempo restante si cambia el alcance o aparecen incidencias. Las estimaciones son aproximaciones, no horas garantizadas.
 - Presentar siempre el tiempo estimado y el nivel de trabajo en líneas separadas, ambos en negrita, en tareas de este tipo.
+- En la portada, respetar el fondo original `img/fondo2.avif`, los colores originales y los iconos existentes. Mejorar la organización y accesibilidad conservando esa identidad visual, salvo petición expresa de cambiarla.
